@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "NIjaobtRmOtXkGnzx8c18BI1EEUCl2JPZO0FuvsGIhE=",
+  "Source": "ConsultorioMedico.Api",
+  "BasePath": "_content/ConsultorioMedico.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
