@@ -216,3 +216,4 @@ C:\Users\migue\source\repos\ConsultorioMedico.Api\obj\Debug\net8.0\refint\Consul
 C:\Users\migue\source\repos\ConsultorioMedico.Api\obj\Debug\net8.0\ConsultorioMedico.Api.pdb
 C:\Users\migue\source\repos\ConsultorioMedico.Api\obj\Debug\net8.0\ConsultorioMedico.Api.genruntimeconfig.cache
 C:\Users\migue\source\repos\ConsultorioMedico.Api\obj\Debug\net8.0\ref\ConsultorioMedico.Api.dll
+C:\Users\migue\source\repos\ConsultorioMedico.Api\obj\Debug\net8.0\ConsultorioMedico.Api.sourcelink.json

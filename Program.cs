@@ -35,7 +35,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuer = !string.IsNullOrWhiteSpace(jwt["Issuer"]),
             ValidateAudience = !string.IsNullOrWhiteSpace(jwt["Audience"]),
 
-            // 🔑 mapeia corretamente os claims usados para Nome e Role
+
             NameClaimType = ClaimTypes.Name,
             RoleClaimType = ClaimTypes.Role
         };
