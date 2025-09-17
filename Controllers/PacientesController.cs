@@ -34,6 +34,7 @@ namespace ConsultorioMedico.Api.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [Authorize(Roles = "Recepcao,Admin,Medico")]
         public async Task<IActionResult> Create(PacienteCreateDto dto)
         {

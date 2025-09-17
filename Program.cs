@@ -34,26 +34,29 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateLifetime = true,
             ValidateIssuer = !string.IsNullOrWhiteSpace(jwt["Issuer"]),
             ValidateAudience = !string.IsNullOrWhiteSpace(jwt["Audience"]),
-
-
             NameClaimType = ClaimTypes.Name,
             RoleClaimType = ClaimTypes.Role
         };
     });
 
-builder.Services.AddAuthorization();
+// Authorization + Policy usada nos controllers ([Authorize(Policy = "MedicoOnly")])
+builder.Services.AddAuthorization(opt =>
+{
+    opt.AddPolicy("MedicoOnly", p => p.RequireRole("Medico")); // ou .RequireRole("Medico","Admin")
+});
 
-// CORS (ajuste a origin do seu front quando for usar)
+// CORS (Angular CLI 4200 + Vite 5173)
 builder.Services.AddCors(opt =>
 {
     opt.AddDefaultPolicy(p => p
-        .WithOrigins("http://localhost:5173")
+        .WithOrigins("http://localhost:4200", "http://localhost:5173")
         .AllowAnyHeader()
         .AllowAnyMethod()
         .AllowCredentials());
 });
 
 builder.Services.AddScoped<TokenService>();
+builder.Services.AddScoped<PdfService>(); // QuestPDF (quando implementar)
 
 builder.Services.AddControllers();
 
@@ -74,10 +77,7 @@ builder.Services.AddSwaggerGen(c =>
         Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
     };
     c.AddSecurityDefinition("Bearer", securityScheme);
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        { securityScheme, Array.Empty<string>() }
-    });
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement { { securityScheme, Array.Empty<string>() } });
 });
 
 var app = builder.Build();
@@ -91,20 +91,20 @@ app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 
-// 🔎 logger simples para ver auth/roles chegando
+// Logger simples de auth/roles
 app.Use(async (ctx, next) =>
 {
     var auth = ctx.User?.Identity?.IsAuthenticated ?? false;
     var roles = string.Join(",",
-    (ctx.User?.Claims ?? Enumerable.Empty<Claim>())
-        .Where(c => c.Type == ClaimTypes.Role)
-        .Select(c => c.Value)
-);
+        (ctx.User?.Claims ?? Enumerable.Empty<Claim>())
+            .Where(c => c.Type == ClaimTypes.Role)
+            .Select(c => c.Value)
+    );
     Console.WriteLine($"[{DateTime.Now:HH:mm:ss}] {ctx.Request.Method} {ctx.Request.Path} | Auth={auth} | Roles={roles}");
     await next();
 });
 
-// rota de diagnóstico para listar endpoints
+// rota de diagnóstico
 app.MapGet("/_routes", (Microsoft.AspNetCore.Routing.EndpointDataSource eds) =>
 {
     var routes = eds.Endpoints
