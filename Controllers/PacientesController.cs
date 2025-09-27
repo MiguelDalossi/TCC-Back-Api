@@ -36,7 +36,7 @@ namespace ConsultorioMedico.Api.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Authorize(Roles = "Recepcao,Admin,Medico")]
-        public async Task<IActionResult> Create(PacienteCreateDto dto)
+        public async Task<IActionResult> Create([FromBody] PacienteCreateDto dto)
         {
             var p = new Paciente
             {
@@ -54,6 +54,7 @@ namespace ConsultorioMedico.Api.Controllers
         }
 
         [HttpPut("{id:guid}")]
+        [AllowAnonymous]
         [Authorize(Roles = "Recepcao,Admin,Medico")]
         public async Task<IActionResult> Update(Guid id, PacienteUpdateDto dto)
         {

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Security.Claims;
+using System.Threading.Tasks;
 using ConsultorioMedico.Api.Dtos;
 using ConsultorioMedico.Api.Models;
 using ConsultorioMedico.Api.Services;
@@ -35,6 +36,7 @@ namespace ConsultorioMedico.Api.Controllers
 
             var roles = await _userMgr.GetRolesAsync(user);
             var (token, expires) = _tokenSvc.Generate(user, roles);
+
 
             var primaryRole = roles.Count > 0 ? roles[0] : "";
 
@@ -86,7 +88,10 @@ namespace ConsultorioMedico.Api.Controllers
             return new
             {
                 Name = User.Identity?.Name,
-                Roles = User.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.Role).Select(c => c.Value).ToList()
+                Roles = User.Claims
+                             .Where(c => c.Type == ClaimTypes.Role)
+                             .Select(c => c.Value)
+                             .ToList()
             };
         }
     }

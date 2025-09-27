@@ -53,6 +53,7 @@ namespace ConsultorioMedico.Api.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [Authorize(Roles = "Recepcao,Admin,Medico")]
         public async Task<IActionResult> Create(ConsultaCreateDto dto)
         {
@@ -76,6 +77,7 @@ namespace ConsultorioMedico.Api.Controllers
         }
 
         [HttpPatch("{id:guid}/status")]
+        [AllowAnonymous]
         [Authorize(Roles = "Medico,Admin")]
         public async Task<IActionResult> UpdateStatus(Guid id, ConsultaStatusUpdateDto dto)
         {

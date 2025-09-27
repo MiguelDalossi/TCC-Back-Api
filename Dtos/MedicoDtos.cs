@@ -3,12 +3,12 @@ using System;
 
 namespace ConsultorioMedico.Api.Dtos
 {
-    public record MedicoCreateDto(
-    [property: Required] Guid UserId,
-    [property: Required, StringLength(20)] string CRM,
-    [property: Required, StringLength(2, MinimumLength = 2)] string UF,
-    [property: Required, StringLength(80)] string Especialidade
-);
+    public class MedicoCreateDto
+    {
+        public string CRM { get; set; } = string.Empty;
+        public string UF { get; set; } = string.Empty;
+        public string Especialidade { get; set; } = string.Empty;
+    }
 
     public record MedicoUpdateDto(
         [property: Required, StringLength(20)] string CRM,

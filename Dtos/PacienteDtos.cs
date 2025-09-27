@@ -1,24 +1,24 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ConsultorioMedico.Api.Dtos
 {
     public record PacienteCreateDto(
-    [property: Required, StringLength(120)] string Nome,
-    [property: Required] DateTime DataNascimento,
-    [property: StringLength(14)] string? Cpf,
-    [property: StringLength(20)] string? Telefone,
-    [property: EmailAddress] string? Email,
-    string? Endereco,
-    string? Observacoes
-);
+        [Required, StringLength(120)] string Nome,
+        [Required] DateTime DataNascimento,
+        [StringLength(14)] string? Cpf,
+        [StringLength(20)] string? Telefone,
+        [EmailAddress] string? Email,
+        string? Endereco,
+        string? Observacoes
+    );
 
     public record PacienteUpdateDto(
-        [property: Required, StringLength(120)] string Nome,
-        [property: Required] DateTime DataNascimento,
-        [property: StringLength(14)] string? Cpf,
-        [property: StringLength(20)] string? Telefone,
-        [property: EmailAddress] string? Email,
+        [Required, StringLength(120)] string Nome,
+        [Required] DateTime DataNascimento,
+        [StringLength(14)] string? Cpf,
+        [StringLength(20)] string? Telefone,
+        [EmailAddress] string? Email,
         string? Endereco,
         string? Observacoes
     );

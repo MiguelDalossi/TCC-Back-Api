@@ -20,8 +20,20 @@ builder.Services.AddIdentity<AppUser, IdentityRole<Guid>>()
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Events.OnRedirectToLogin = context =>
+    {
+        context.Response.StatusCode = 401;
+        context.Response.ContentType = "application/json";
+        return context.Response.WriteAsync("{\"error\": \"Unauthorized\"}");
+    };
+    options.LoginPath = "/"; // Evita redirecionamento para /Account/Login
+});
+
 // JWT
 var jwt = builder.Configuration.GetSection("Jwt");
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(o =>
     {
@@ -34,15 +46,26 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateLifetime = true,
             ValidateIssuer = !string.IsNullOrWhiteSpace(jwt["Issuer"]),
             ValidateAudience = !string.IsNullOrWhiteSpace(jwt["Audience"]),
-            NameClaimType = ClaimTypes.Name,
+            ClockSkew = TimeSpan.Zero, // sem tolerância de horário
+            NameClaimType = ClaimTypes.NameIdentifier,
             RoleClaimType = ClaimTypes.Role
+        };
+        o.Events = new JwtBearerEvents
+        {
+            OnChallenge = context =>
+            {
+                context.HandleResponse();
+                context.Response.StatusCode = 401;
+                context.Response.ContentType = "application/json";
+                return context.Response.WriteAsync("{\"error\": \"Unauthorized\"}");
+            }
         };
     });
 
 // Authorization + Policy usada nos controllers ([Authorize(Policy = "MedicoOnly")])
 builder.Services.AddAuthorization(opt =>
 {
-    opt.AddPolicy("MedicoOnly", p => p.RequireRole("Medico")); // ou .RequireRole("Medico","Admin")
+    opt.AddPolicy("MedicoOnly", p => p.RequireRole("Medico", "Admin"));
 });
 
 // CORS (Angular CLI 4200 + Vite 5173)
@@ -71,8 +94,8 @@ builder.Services.AddSwaggerGen(c =>
         Name = "Authorization",
         Description = "Insira o token JWT como: Bearer {seu_token}",
         In = ParameterLocation.Header,
-        Type = SecuritySchemeType.Http,
-        Scheme = "bearer",
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
         BearerFormat = "JWT",
         Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
     };
