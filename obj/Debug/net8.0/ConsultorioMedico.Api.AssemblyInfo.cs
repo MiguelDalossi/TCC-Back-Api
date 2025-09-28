@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ConsultorioMedico.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4779316fd7187ad888b102872c2dea5d89174ed9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+480f59e5e1d8bb820c3d640e12fe63fe41bacfcf")]
 [assembly: System.Reflection.AssemblyProductAttribute("ConsultorioMedico.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ConsultorioMedico.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

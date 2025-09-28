@@ -11,67 +11,74 @@ using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// DbContext
-builder.Services.AddDbContext<AppDbContext>(opt =>
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
-// Identity
-builder.Services.AddIdentity<AppUser, IdentityRole<Guid>>()
-    .AddEntityFrameworkStores<AppDbContext>()
-    .AddDefaultTokenProviders();
-
-builder.Services.ConfigureApplicationCookie(options =>
+builder.Services.AddIdentity<AppUser, IdentityRole<Guid>>(options =>
 {
-    options.Events.OnRedirectToLogin = context =>
-    {
-        context.Response.StatusCode = 401;
-        context.Response.ContentType = "application/json";
-        return context.Response.WriteAsync("{\"error\": \"Unauthorized\"}");
-    };
-    options.LoginPath = "/"; // Evita redirecionamento para /Account/Login
-});
+    // Configurações opcionais do Identity
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequiredLength = 6;
+})
+.AddEntityFrameworkStores<AppDbContext>()
+.AddDefaultTokenProviders();
 
-// JWT
 var jwt = builder.Configuration.GetSection("Jwt");
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(o =>
-    {
-        o.TokenValidationParameters = new()
-        {
-            ValidIssuer = jwt["Issuer"],
-            ValidAudience = jwt["Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt["Key"]!)),
-            ValidateIssuerSigningKey = true,
-            ValidateLifetime = true,
-            ValidateIssuer = !string.IsNullOrWhiteSpace(jwt["Issuer"]),
-            ValidateAudience = !string.IsNullOrWhiteSpace(jwt["Audience"]),
-            ClockSkew = TimeSpan.Zero, // sem tolerância de horário
-            NameClaimType = ClaimTypes.NameIdentifier,
-            RoleClaimType = ClaimTypes.Role
-        };
-        o.Events = new JwtBearerEvents
-        {
-            OnChallenge = context =>
-            {
-                context.HandleResponse();
-                context.Response.StatusCode = 401;
-                context.Response.ContentType = "application/json";
-                return context.Response.WriteAsync("{\"error\": \"Unauthorized\"}");
-            }
-        };
-    });
-
-// Authorization + Policy usada nos controllers ([Authorize(Policy = "MedicoOnly")])
-builder.Services.AddAuthorization(opt =>
+builder.Services.AddAuthentication(options =>
 {
-    opt.AddPolicy("MedicoOnly", p => p.RequireRole("Medico", "Admin"));
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidIssuer = jwt["Issuer"],
+        ValidAudience = jwt["Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt["Key"]!)),
+        ValidateIssuerSigningKey = true,
+        ValidateLifetime = true,
+        ValidateIssuer = !string.IsNullOrWhiteSpace(jwt["Issuer"]),
+        ValidateAudience = !string.IsNullOrWhiteSpace(jwt["Audience"]),
+        ClockSkew = TimeSpan.Zero,
+        NameClaimType = ClaimTypes.Name,
+        RoleClaimType = ClaimTypes.Role
+    };
+
+    options.Events = new JwtBearerEvents
+    {
+        OnChallenge = context =>
+        {
+            context.HandleResponse();
+            context.Response.StatusCode = 401;
+            context.Response.ContentType = "application/json";
+            return context.Response.WriteAsync("{\"error\": \"Token JWT inválido ou ausente\"}");
+        },
+        OnAuthenticationFailed = context =>
+        {
+            Console.WriteLine($"JWT Authentication failed: {context.Exception.Message}");
+            return Task.CompletedTask;
+        },
+        OnTokenValidated = context =>
+        {
+            Console.WriteLine($"JWT Token validated for: {context.Principal?.Identity?.Name}");
+            return Task.CompletedTask;
+        }
+    };
 });
 
-// CORS (Angular CLI 4200 + Vite 5173)
-builder.Services.AddCors(opt =>
+builder.Services.AddAuthorization(options =>
 {
-    opt.AddDefaultPolicy(p => p
+    options.AddPolicy("Medico", policy => policy.RequireRole("Admin", "MedicoOnly"));
+});
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy => policy
         .WithOrigins("http://localhost:4200", "http://localhost:5173")
         .AllowAnyHeader()
         .AllowAnyMethod()
@@ -79,11 +86,10 @@ builder.Services.AddCors(opt =>
 });
 
 builder.Services.AddScoped<TokenService>();
-builder.Services.AddScoped<PdfService>(); // QuestPDF (quando implementar)
+builder.Services.AddScoped<PdfService>();
 
 builder.Services.AddControllers();
 
-// Swagger + Bearer
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -94,8 +100,8 @@ builder.Services.AddSwaggerGen(c =>
         Name = "Authorization",
         Description = "Insira o token JWT como: Bearer {seu_token}",
         In = ParameterLocation.Header,
-        Type = SecuritySchemeType.ApiKey,
-        Scheme = "Bearer",
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
         BearerFormat = "JWT",
         Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
     };
@@ -114,20 +120,30 @@ app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 
-// Logger simples de auth/roles
 app.Use(async (ctx, next) =>
 {
-    var auth = ctx.User?.Identity?.IsAuthenticated ?? false;
-    var roles = string.Join(",",
-        (ctx.User?.Claims ?? Enumerable.Empty<Claim>())
-            .Where(c => c.Type == ClaimTypes.Role)
-            .Select(c => c.Value)
-    );
-    Console.WriteLine($"[{DateTime.Now:HH:mm:ss}] {ctx.Request.Method} {ctx.Request.Path} | Auth={auth} | Roles={roles}");
+    var isAuth = ctx.User?.Identity?.IsAuthenticated ?? false;
+    var userName = ctx.User?.Identity?.Name ?? "Anonymous";
+    var roles = string.Join(",", ctx.User?.FindAll(ClaimTypes.Role)?.Select(c => c.Value) ?? Array.Empty<string>());
+    var userId = ctx.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "Unknown";
+
+    Console.WriteLine($"[{DateTime.Now:HH:mm:ss}] {ctx.Request.Method} {ctx.Request.Path}");
+    Console.WriteLine($"  Auth: {isAuth} | User: {userName} | ID: {userId} | Roles: [{roles}]");
+
+    // Log do header Authorization
+    var authHeader = ctx.Request.Headers["Authorization"].FirstOrDefault();
+    if (!string.IsNullOrEmpty(authHeader))
+    {
+        Console.WriteLine($"  Authorization Header: {authHeader[..Math.Min(50, authHeader.Length)]}...");
+    }
+    else
+    {
+        Console.WriteLine("  No Authorization Header");
+    }
+
     await next();
 });
 
-// rota de diagnóstico
 app.MapGet("/_routes", (Microsoft.AspNetCore.Routing.EndpointDataSource eds) =>
 {
     var routes = eds.Endpoints
@@ -141,6 +157,21 @@ app.MapGet("/_routes", (Microsoft.AspNetCore.Routing.EndpointDataSource eds) =>
         })
         .OrderBy(r => r.Route);
     return Results.Ok(routes);
+});
+
+app.MapGet("/_auth-info", (HttpContext ctx) =>
+{
+    return Results.Ok(new
+    {
+        IsAuthenticated = ctx.User?.Identity?.IsAuthenticated ?? false,
+        UserName = ctx.User?.Identity?.Name,
+        UserId = ctx.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value,
+        Roles = ctx.User?.FindAll(ClaimTypes.Role)?.Select(c => c.Value).ToArray() ?? Array.Empty<string>(),
+        AllClaims = ctx.User?.Claims?.Select(c => new { c.Type, c.Value }).ToArray() ?? Array.Empty<object>(),
+        HasAdminRole = ctx.User?.IsInRole("Admin") ?? false,
+        HasMedicoRole = ctx.User?.IsInRole("Medico") ?? false,
+        HasRecepcaoRole = ctx.User?.IsInRole("Recepcao") ?? false
+    });
 });
 
 app.MapControllers();
