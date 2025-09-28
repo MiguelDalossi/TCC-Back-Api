@@ -22,7 +22,7 @@ namespace ConsultorioMedico.Api.Controllers
 
         // GET /api/medicos?q=cardio&page=1&pageSize=20
         [HttpGet]
-        [Authorize(Roles = "Admin,Recepcao,Medico")]
+        [Authorize(Roles = "Admin,Recepcao,MedicoOnly")]
         public async Task<ActionResult<object>> List([FromQuery] string? q, [FromQuery] int page = 1, [FromQuery] int pageSize = 20)
         {
             page = page <= 0 ? 1 : page;
@@ -64,7 +64,7 @@ namespace ConsultorioMedico.Api.Controllers
 
         // GET /api/medicos/{id}
         [HttpGet("{id:guid}")]
-        [Authorize(Roles = "Admin,Recepcao,Medico")]
+        [Authorize(Roles = "Admin,Recepcao,MedicoOnly")]
         public async Task<ActionResult<MedicoDetailDto>> Get(Guid id)
         {
             var m = await _db.Medicos
@@ -86,7 +86,7 @@ namespace ConsultorioMedico.Api.Controllers
 
         // POST /api/medicos
         [HttpPost]
-        [Authorize(Roles = "Admin,Medico")]
+        [Authorize(Roles = "Admin,MedicoOnly")]
         public async Task<IActionResult> Create(MedicoCreateDto dto)
         {
             // Tenta obter o UserId do token JWT
@@ -123,7 +123,7 @@ namespace ConsultorioMedico.Api.Controllers
 
         // PUT /api/medicos/{id}
         [HttpPut("{id:guid}")]
-        [Authorize(Roles = "Admin,Medico")]
+        [Authorize(Roles = "Admin,MedicoOnly")]
         public async Task<IActionResult> Update(Guid id, MedicoUpdateDto dto)
         {
             var m = await _db.Medicos.FindAsync(id);

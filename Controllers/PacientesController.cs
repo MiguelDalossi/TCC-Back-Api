@@ -35,7 +35,7 @@ namespace ConsultorioMedico.Api.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [Authorize(Roles = "Recepcao,Admin,Medico")]
+        [Authorize(Roles = "Recepcao,Admin,MedicoOnly")]
         public async Task<IActionResult> Create([FromBody] PacienteCreateDto dto)
         {
             var p = new Paciente
@@ -55,7 +55,7 @@ namespace ConsultorioMedico.Api.Controllers
 
         [HttpPut("{id:guid}")]
         [AllowAnonymous]
-        [Authorize(Roles = "Recepcao,Admin,Medico")]
+        [Authorize(Roles = "Recepcao,Admin,MedicoOnly")]
         public async Task<IActionResult> Update(Guid id, PacienteUpdateDto dto)
         {
             var p = await _db.Pacientes.FindAsync(id);

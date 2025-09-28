@@ -154,8 +154,7 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-21T16:13:43.358Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -169,7 +168,7 @@
               "RelativeDocumentMoniker": "Controllers\\MedicosController.cs",
               "ToolTip": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Controllers\\MedicosController.cs",
               "RelativeToolTip": "Controllers\\MedicosController.cs",
-              "ViewState": "AQIAAFYAAAAAAAAAAAAgwKgAAAAAAAAA",
+              "ViewState": "AQIAABkAAAAAAAAAAAAzwFcAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-18T13:19:15.805Z",
               "EditorCaption": ""
@@ -184,8 +183,7 @@
               "RelativeToolTip": "Models\\AppUser.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-21T16:10:02.099Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-21T16:10:02.099Z"
             },
             {
               "$type": "Document",
@@ -197,8 +195,7 @@
               "RelativeToolTip": "Controllers\\AuthController.cs",
               "ViewState": "AQIAAB4AAAAAAAAAAAAYwCYAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-22T14:44:25.325Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-22T14:44:25.325Z"
             },
             {
               "$type": "Document",
@@ -210,8 +207,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AQIAABgAAAAAAAAAAAAAADAAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-21T16:05:40.946Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-21T16:05:40.946Z"
             },
             {
               "$type": "Document",
@@ -223,8 +219,7 @@
               "RelativeToolTip": "Controllers\\ConsultasController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAE8AAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-22T14:15:52.173Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-22T14:15:52.173Z"
             },
             {
               "$type": "Document",
@@ -236,8 +231,7 @@
               "RelativeToolTip": "Controllers\\PacientesController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAADgAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-22T14:15:15.67Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-22T14:15:15.67Z"
             },
             {
               "$type": "Document",
@@ -249,8 +243,7 @@
               "RelativeToolTip": "Services\\TokenService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAABUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-22T14:43:24.194Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-22T14:43:24.194Z"
             },
             {
               "$type": "Document",
@@ -262,8 +255,7 @@
               "RelativeToolTip": "Infrastructure\\IdentitySeeder.cs",
               "ViewState": "AQIAAA0AAAAAAAAAAAAQwC4AAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-22T14:03:33.401Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-22T14:03:33.401Z"
             },
             {
               "$type": "Document",
@@ -275,8 +267,7 @@
               "RelativeToolTip": "Dtos\\MedicoDtos.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-21T16:42:22.832Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-21T16:42:22.832Z"
             },
             {
               "$type": "Document",
@@ -288,8 +279,7 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-08-21T16:05:13.71Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-21T16:05:13.71Z"
             },
             {
               "$type": "Document",
@@ -301,8 +291,7 @@
               "RelativeToolTip": "Data\\AppDbContext.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-21T16:01:44.04Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-21T16:01:44.04Z"
             },
             {
               "$type": "Document",
@@ -314,8 +303,7 @@
               "RelativeToolTip": "Properties\\launchSettings.json",
               "ViewState": "AQIAAAwAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-08-21T15:18:10.062Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-21T15:18:10.062Z"
             },
             {
               "$type": "Document",
@@ -459,8 +447,7 @@
               "RelativeToolTip": "Dtos\\AuthDtos.cs",
               "ViewState": "AQIAAAgAAAAAAAAAAAAAwBAAAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-21T16:44:00.527Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-21T16:44:00.527Z"
             },
             {
               "$type": "Document",

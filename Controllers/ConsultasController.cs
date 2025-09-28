@@ -54,7 +54,7 @@ namespace ConsultorioMedico.Api.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [Authorize(Roles = "Recepcao,Admin,Medico")]
+        [Authorize(Roles = "Recepcao,Admin,MedicoOnly")]
         public async Task<IActionResult> Create(ConsultaCreateDto dto)
         {
             // conflito básico na agenda do médico
@@ -78,7 +78,7 @@ namespace ConsultorioMedico.Api.Controllers
 
         [HttpPatch("{id:guid}/status")]
         [AllowAnonymous]
-        [Authorize(Roles = "Medico,Admin")]
+        [Authorize(Roles = "MedicoOnly,Admin")]
         public async Task<IActionResult> UpdateStatus(Guid id, ConsultaStatusUpdateDto dto)
         {
             var c = await _db.Consultas.FindAsync(id);
