@@ -12,8 +12,11 @@ namespace ConsultorioMedico.Api.Dtos
 );
 
     public record PrescricaoUpsertDto(
-        [property: MinLength(1)] List<PrescricaoItemUpsertDto> Itens
-    );
+    [property: Required] string Medicamento,
+    [property: Required] string Posologia,
+    string? Orientacoes,
+    [property: Required] List<PrescricaoItemUpsertDto> Itens
+);
 
     public record PrescricaoItemUpsertDto(
         [property: Required, StringLength(120)] string Medicamento,

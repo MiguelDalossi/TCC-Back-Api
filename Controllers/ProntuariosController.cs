@@ -10,7 +10,7 @@ namespace ConsultorioMedico.Api.Controllers
 {
     [ApiController]
     [Route("api/prontuarios")]
-    [Authorize(Policy = "MedicoOnly")]
+    [Authorize(Policy = "MedicoOnly, Medico, Admin")]
     public class ProntuariosController : ControllerBase
     {
         private readonly AppDbContext _db;

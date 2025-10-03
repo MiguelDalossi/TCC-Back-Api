@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using ConsultorioMedico.Api.Data;
 using ConsultorioMedico.Api.Dtos;
 using ConsultorioMedico.Api.Models;
@@ -10,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Identity;
 
 namespace ConsultorioMedico.Api.Controllers
 {
@@ -22,7 +22,7 @@ namespace ConsultorioMedico.Api.Controllers
 
         // GET /api/medicos?q=cardio&page=1&pageSize=20
         [HttpGet]
-        [Authorize(Roles = "Admin,Recepcao,MedicoOnly")]
+        [Authorize(Roles = "Admin,Recepcao,MedicoOnly, Medico")]
         public async Task<ActionResult<object>> List([FromQuery] string? q, [FromQuery] int page = 1, [FromQuery] int pageSize = 20)
         {
             page = page <= 0 ? 1 : page;
@@ -44,19 +44,21 @@ namespace ConsultorioMedico.Api.Controllers
             }
 
             var total = await query.CountAsync();
-
             var itens = await query
                 .OrderBy(m => m.User.FullName)
                 .ThenBy(m => m.CRM)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .Select(m => new MedicoListDto(
-                    m.Id,
-                    m.User.FullName ?? "",
-                    m.CRM,
-                    m.UF,
-                    m.Especialidade
-                ))
+    m.Id,
+    m.User.FullName ?? "",
+    m.CRM,
+    m.UF,
+    m.Especialidade,
+    m.CPF ?? "",
+    m.User.Email ?? "",
+    m.Telefone // Adicionado
+))
                 .ToListAsync();
 
             return Ok(new { total, page, pageSize, itens });
@@ -64,44 +66,56 @@ namespace ConsultorioMedico.Api.Controllers
 
         // GET /api/medicos/{id}
         [HttpGet("{id:guid}")]
-        [Authorize(Roles = "Admin,Recepcao,MedicoOnly")]
+        [Authorize(Roles = "Admin,Recepcao,MedicoOnly, Medico")]
         public async Task<ActionResult<MedicoDetailDto>> Get(Guid id)
         {
-            var m = await _db.Medicos
+            var medico = await _db.Medicos
                 .Include(x => x.User)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
-            if (m is null) return NotFound();
+            if (medico is null) return NotFound();
 
             return new MedicoDetailDto(
-                m.Id,
-                m.UserId,
-                m.User.FullName ?? "",
-                m.User.Email ?? "",
-                m.CRM,
-                m.UF,
-                m.Especialidade
-            );
+    medico.Id,
+    medico.UserId,
+    medico.User.FullName ?? "",
+    medico.User.Email ?? "",
+    medico.CRM,
+    medico.UF,
+    medico.Especialidade,
+    medico.CPF ?? "",
+    medico.Email ?? "",
+    medico.Telefone // Adicionado
+);
         }
 
         // POST /api/medicos
         [HttpPost]
-        [Authorize(Roles = "Admin,MedicoOnly")]
-        public async Task<IActionResult> Create(MedicoCreateDto dto)
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Create(MedicoCreateDto dto, [FromServices] UserManager<AppUser> userMgr)
         {
-            // Tenta obter o UserId do token JWT
-            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier)
-                         ?? User.FindFirstValue(JwtRegisteredClaimNames.Sub);
+            // Verifica se já existe usuário com esse e-mail
+            var userExist = await userMgr.FindByEmailAsync(dto.Email);
+            if (userExist != null)
+                return Conflict("Já existe um usuário com esse e-mail.");
 
-            if (string.IsNullOrEmpty(userIdStr) || !Guid.TryParse(userIdStr, out Guid userId))
-                return Unauthorized("Token de autenticação inválido ou ausente.");
+            // Cria o usuário
+            var user = new AppUser
+            {
+                UserName = dto.Email,
+                Email = dto.Email,
+                EmailConfirmed = true,
+                FullName = dto.Nome
+            };
 
-            // Verifica se já existe médico para este usuário
-            var jaVinculado = await _db.Medicos.AnyAsync(x => x.UserId == userId);
-            if (jaVinculado)
-                return Conflict("Este usuário já está vinculado a um médico.");
+            var result = await userMgr.CreateAsync(user, dto.Password);
+            if (!result.Succeeded)
+                return BadRequest(result.Errors.Select(e => e.Description));
 
-            // Unique CRM+UF
+            // Adiciona à role "Medico"
+            await userMgr.AddToRoleAsync(user, "Medico");
+
+            // Cria o médico vinculado ao usuário
             var crmDuplicado = await _db.Medicos.AnyAsync(x => x.CRM == dto.CRM && x.UF == dto.UF);
             if (crmDuplicado)
                 return Conflict("Já existe um médico com esse CRM/UF.");
@@ -109,10 +123,14 @@ namespace ConsultorioMedico.Api.Controllers
             var medico = new Medico
             {
                 Id = Guid.NewGuid(),
-                UserId = userId,
+                UserId = user.Id,
                 CRM = dto.CRM.Trim(),
                 UF = dto.UF.Trim().ToUpper(),
-                Especialidade = dto.Especialidade.Trim()
+                Especialidade = dto.Especialidade.Trim(),
+                Nome = dto.Nome.Trim(),
+                CPF = dto.CPF.Trim(),
+                Email = dto.Email.Trim(),
+                Telefone = dto.Telefone.Trim() // Adicionado
             };
 
             _db.Medicos.Add(medico);
@@ -123,23 +141,36 @@ namespace ConsultorioMedico.Api.Controllers
 
         // PUT /api/medicos/{id}
         [HttpPut("{id:guid}")]
-        [Authorize(Roles = "Admin,MedicoOnly")]
+        [Authorize(Roles = "Admin,MedicoOnly, Medico")]
         public async Task<IActionResult> Update(Guid id, MedicoUpdateDto dto)
         {
-            var m = await _db.Medicos.FindAsync(id);
-            if (m is null) return NotFound();
+            var medico = await _db.Medicos
+                .Include(x => x.User)
+                .FirstOrDefaultAsync(x => x.Id == id);
+            if (medico is null) return NotFound();
 
             var novoCRM = dto.CRM.Trim();
             var novaUF = dto.UF.Trim().ToUpper();
 
-            // Unique CRM+UF (excluindo o próprio registro)
             var conflito = await _db.Medicos
-                .AnyAsync(x => x.Id != id && x.CRM == novoCRM && x.UF == novaUF);
+                .AnyAsync(x => x.Id != id && x.CRM.ToLower() == novoCRM.ToLower() && x.UF.ToUpper() == novaUF);
             if (conflito) return Conflict("Já existe um médico com esse CRM/UF.");
 
-            m.CRM = novoCRM;
-            m.UF = novaUF;
-            m.Especialidade = dto.Especialidade.Trim();
+            medico.CRM = novoCRM;
+            medico.UF = novaUF;
+            medico.Especialidade = dto.Especialidade?.Trim() ?? medico.Especialidade;
+            medico.Nome = dto.Nome?.Trim() ?? medico.Nome;
+            medico.CPF = dto.CPF?.Trim() ?? medico.CPF;
+            medico.Email = dto.Email?.Trim() ?? medico.Email;
+            medico.Telefone = dto.Telefone?.Trim() ?? medico.Telefone;
+
+            // Atualiza também o usuário, se necessário
+            if (medico.User != null)
+            {
+                medico.User.FullName = medico.Nome;
+                medico.User.Email = medico.Email;
+                medico.User.UserName = medico.Email;
+            }
 
             await _db.SaveChangesAsync();
             return NoContent();
@@ -148,20 +179,26 @@ namespace ConsultorioMedico.Api.Controllers
         // DELETE /api/medicos/{id}
         [HttpDelete("{id:guid}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id, [FromServices] UserManager<AppUser> userMgr)
         {
-            var m = await _db.Medicos
+            var medico = await _db.Medicos
                 .Include(x => x.Consultas)
+                .Include(x => x.User)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
-            if (m is null) return NotFound();
+            if (medico is null) return NotFound();
 
-            // Regra de negócio: impedir exclusão se houver consultas vinculadas
-            if (m.Consultas.Any())
+            if (medico.Consultas.Any())
                 return Conflict("Não é possível excluir: há consultas vinculadas a este médico.");
 
-            _db.Medicos.Remove(m);
+            // Remove o médico
+            _db.Medicos.Remove(medico);
             await _db.SaveChangesAsync();
+
+            // Remove o usuário vinculado
+            if (medico.User != null)
+                await userMgr.DeleteAsync(medico.User);
+
             return NoContent();
         }
     }

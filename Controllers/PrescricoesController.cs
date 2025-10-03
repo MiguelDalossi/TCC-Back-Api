@@ -11,7 +11,7 @@ namespace ConsultorioMedico.Api.Controllers
 {
     [ApiController]
     [Route("api/prescricoes")]
-    [Authorize(Policy = "MedicoOnly")]
+    [Authorize(Policy = "MedicoOnly, Medico, Admin")]
     public class PrescricoesController : ControllerBase
     {
         private readonly AppDbContext _db;

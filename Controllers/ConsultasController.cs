@@ -53,8 +53,7 @@ namespace ConsultorioMedico.Api.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
-        [Authorize(Roles = "Recepcao,Admin,MedicoOnly")]
+        [Authorize(Roles = "Recepcao,Admin,MedicoOnly, Medico")]
         public async Task<IActionResult> Create(ConsultaCreateDto dto)
         {
             // conflito básico na agenda do médico
@@ -77,8 +76,7 @@ namespace ConsultorioMedico.Api.Controllers
         }
 
         [HttpPatch("{id:guid}/status")]
-        [AllowAnonymous]
-        [Authorize(Roles = "MedicoOnly,Admin")]
+        [Authorize(Roles = "Recepcao, MedicoOnly,Admin, Medico")]
         public async Task<IActionResult> UpdateStatus(Guid id, ConsultaStatusUpdateDto dto)
         {
             var c = await _db.Consultas.FindAsync(id);
@@ -87,5 +85,63 @@ namespace ConsultorioMedico.Api.Controllers
             await _db.SaveChangesAsync();
             return NoContent();
         }
+
+        [HttpPut("{id:guid}")]
+        [Authorize(Roles = "MedicoOnly, Medico, Admin")]
+        public async Task<IActionResult> Update(Guid id, ConsultaUpdateDto dto)
+        {
+            var consulta = await _db.Consultas
+                .Include(c => c.Prontuario)
+                .Include(c => c.Prescricoes)
+                .FirstOrDefaultAsync(c => c.Id == id);
+
+            if (consulta is null)
+                return NotFound();
+
+            // Atualiza campos básicos da consulta
+            consulta.Inicio = dto.Inicio;
+            consulta.Fim = dto.Fim;
+            consulta.Status = Enum.Parse<StatusConsulta>(dto.Status.ToString());
+
+            // Atualiza ou cria o prontuário
+            if (dto.Prontuario != null)
+            {
+                if (consulta.Prontuario is null)
+                {
+                    consulta.Prontuario = new Models.Prontuario
+                    {
+                        ConsultaId = consulta.Id,
+                        CriadoEm = DateTime.UtcNow
+                    };
+                }
+                consulta.Prontuario.QueixaPrincipal = dto.Prontuario.QueixaPrincipal;
+                consulta.Prontuario.Hda = dto.Prontuario.Hda;
+                consulta.Prontuario.Antecedentes = dto.Prontuario.Antecedentes;
+                consulta.Prontuario.ExameFisico = dto.Prontuario.ExameFisico;
+                consulta.Prontuario.HipotesesDiagnosticas = dto.Prontuario.HipotesesDiagnosticas;
+                consulta.Prontuario.Conduta = dto.Prontuario.Conduta;
+                consulta.Prontuario.AtualizadoEm = DateTime.UtcNow;
+            }
+
+            // Atualiza prescrições
+            if (dto.Prescricoes != null)
+            {
+                _db.Prescricoes.RemoveRange(consulta.Prescricoes);
+                foreach (var i in dto.Prescricoes)
+                {
+                    _db.Prescricoes.Add(new Models.PrescricaoItem
+                    {
+                        ConsultaId = consulta.Id,
+                        Medicamento = i.Medicamento,
+                        Posologia = i.Posologia,
+                        Orientacoes = i.Orientacoes ?? string.Empty
+                    });
+                }
+            }
+
+            await _db.SaveChangesAsync();
+            return NoContent();
+        }
+
     }
 }

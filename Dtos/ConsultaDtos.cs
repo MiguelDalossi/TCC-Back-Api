@@ -2,23 +2,22 @@
 using System;
 public enum StatusConsultaDto { Agendada, EmAndamento, Concluida, Cancelada }
 
-
 namespace ConsultorioMedico.Api.Dtos
 {
     public record ConsultaCreateDto(
-        [property: Required] Guid PacienteId,
-        [property: Required] Guid MedicoId,
-        [property: Required] DateTime Inicio,
-        [property: Required] DateTime Fim
+        [Required] Guid PacienteId,
+        [Required] Guid MedicoId,
+        [Required] DateTime Inicio,
+        [Required] DateTime Fim
     );
 
     public record ConsultaUpdateHorarioDto(
-        [property: Required] DateTime Inicio,
-        [property: Required] DateTime Fim
+        [Required] DateTime Inicio,
+        [Required] DateTime Fim
     );
 
     public record ConsultaStatusUpdateDto(
-        [property: Required] StatusConsultaDto Status
+        [Required] StatusConsultaDto Status
     );
 
     public record ConsultaListDto(
@@ -37,4 +36,13 @@ namespace ConsultorioMedico.Api.Dtos
         ProntuarioDetailDto? Prontuario,
         List<PrescricaoItemDto> Prescricoes
     );
+
+    public class ConsultaUpdateDto
+    {
+        public DateTime Inicio { get; set; }
+        public DateTime Fim { get; set; }
+        public string Status { get; set; }
+        public ProntuarioUpsertDto? Prontuario { get; set; }
+        public List<PrescricaoItemUpsertDto>? Prescricoes { get; set; }
+    }
 }

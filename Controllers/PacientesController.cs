@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace ConsultorioMedico.Api.Controllers
+
 {
     [ApiController]
     [Route("api/pacientes")]
@@ -22,7 +23,14 @@ namespace ConsultorioMedico.Api.Controllers
         public async Task<ActionResult<IEnumerable<PacienteListDto>>> List()
             => await _db.Pacientes
                 .OrderBy(p => p.Nome)
-                .Select(p => new PacienteListDto(p.Id, p.Nome, p.DataNascimento, p.Telefone))
+                .Select(p => new PacienteListDto(
+                p.Id,
+                p.Nome,
+                p.DataNascimento,
+                p.Telefone,
+                p.Cidade,
+                p.Estado
+                ))
                 .ToListAsync();
 
         [HttpGet("{id:guid}")]
@@ -30,12 +38,15 @@ namespace ConsultorioMedico.Api.Controllers
         {
             var p = await _db.Pacientes.FindAsync(id);
             if (p is null) return NotFound();
-            return new PacienteDetailDto(p.Id, p.Nome, p.DataNascimento, p.Cpf, p.Telefone, p.Email, p.Endereco, p.Observacoes);
+            return new PacienteDetailDto(
+                p.Id, p.Nome, p.DataNascimento, p.Cpf, p.Telefone, p.Email, p.Observacoes,
+                p.Cidade, p.Estado, p.Bairro, p.Rua, p.Numero, p.Cep, p.Complemento
+            );
         }
 
         [HttpPost]
         [AllowAnonymous]
-        [Authorize(Roles = "Recepcao,Admin,MedicoOnly")]
+        [Authorize(Roles = "Recepcao,Admin,MedicoOnly, Medico")]
         public async Task<IActionResult> Create([FromBody] PacienteCreateDto dto)
         {
             var p = new Paciente
@@ -45,8 +56,14 @@ namespace ConsultorioMedico.Api.Controllers
                 Cpf = dto.Cpf,
                 Telefone = dto.Telefone,
                 Email = dto.Email,
-                Endereco = dto.Endereco,
-                Observacoes = dto.Observacoes
+                Observacoes = dto.Observacoes,
+                Cidade = dto.Cidade,
+                Estado = dto.Estado,
+                Bairro = dto.Bairro,
+                Rua = dto.Rua,
+                Numero = dto.Numero,
+                Cep = dto.Cep,
+                Complemento = dto.Complemento
             };
             _db.Pacientes.Add(p);
             await _db.SaveChangesAsync();
@@ -55,15 +72,40 @@ namespace ConsultorioMedico.Api.Controllers
 
         [HttpPut("{id:guid}")]
         [AllowAnonymous]
-        [Authorize(Roles = "Recepcao,Admin,MedicoOnly")]
+        [Authorize(Roles = "Recepcao,Admin,MedicoOnly, Medico")]
         public async Task<IActionResult> Update(Guid id, PacienteUpdateDto dto)
         {
             var p = await _db.Pacientes.FindAsync(id);
             if (p is null) return NotFound();
-            p.Nome = dto.Nome; p.DataNascimento = dto.DataNascimento; p.Cpf = dto.Cpf;
-            p.Telefone = dto.Telefone; p.Email = dto.Email; p.Endereco = dto.Endereco; p.Observacoes = dto.Observacoes;
+            p.Nome = dto.Nome;
+            p.DataNascimento = dto.DataNascimento;
+            p.Cpf = dto.Cpf;
+            p.Telefone = dto.Telefone;
+            p.Email = dto.Email;
+            p.Observacoes = dto.Observacoes;
+            p.Cidade = dto.Cidade;
+            p.Estado = dto.Estado;
+            p.Bairro = dto.Bairro;
+            p.Rua = dto.Rua;
+            p.Numero = dto.Numero;
+            p.Cep = dto.Cep;
+            p.Complemento = dto.Complemento;
             await _db.SaveChangesAsync();
             return NoContent();
         }
+
+        [HttpDelete("{id:guid}")]
+        [Authorize(Roles = "Medico,MedicoOnly,Admin")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var paciente = await _db.Pacientes.FindAsync(id);
+            if (paciente is null)
+                return NotFound();
+
+            _db.Pacientes.Remove(paciente);
+            await _db.SaveChangesAsync();
+            return NoContent();
+        }
+
     }
 }

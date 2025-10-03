@@ -4,6 +4,7 @@ using ConsultorioMedico.Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConsultorioMedico.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250928212332_AddCpfToMedico")]
+    partial class AddCpfToMedico
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,23 +163,42 @@ namespace ConsultorioMedico.Api.Migrations
                     b.ToTable("Consultas");
                 });
 
-            modelBuilder.Entity("ConsultorioMedico.Api.Models.Paciente", b =>
+            modelBuilder.Entity("ConsultorioMedico.Api.Models.Medico", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Bairro")
+                    b.Property<string>("CRM")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Especialidade")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Cep")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("UF")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Cidade")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Complemento")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("CRM", "UF")
+                        .IsUnique();
+
+                    b.ToTable("Medicos");
+                });
+
+            modelBuilder.Entity("ConsultorioMedico.Api.Models.Paciente", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Cpf")
                         .HasColumnType("nvarchar(450)");
@@ -187,20 +209,14 @@ namespace ConsultorioMedico.Api.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Estado")
+                    b.Property<string>("Endereco")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Numero")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Observacoes")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Rua")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Telefone")
@@ -286,53 +302,6 @@ namespace ConsultorioMedico.Api.Migrations
                         .IsUnique();
 
                     b.ToTable("Prontuarios");
-                });
-
-            modelBuilder.Entity("Medico", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CPF")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CRM")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Especialidade")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Telefone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UF")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.HasIndex("CRM", "UF")
-                        .IsUnique();
-
-                    b.ToTable("Medicos");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
@@ -468,7 +437,7 @@ namespace ConsultorioMedico.Api.Migrations
 
             modelBuilder.Entity("ConsultorioMedico.Api.Models.Consulta", b =>
                 {
-                    b.HasOne("Medico", "Medico")
+                    b.HasOne("ConsultorioMedico.Api.Models.Medico", "Medico")
                         .WithMany("Consultas")
                         .HasForeignKey("MedicoId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -483,6 +452,17 @@ namespace ConsultorioMedico.Api.Migrations
                     b.Navigation("Medico");
 
                     b.Navigation("Paciente");
+                });
+
+            modelBuilder.Entity("ConsultorioMedico.Api.Models.Medico", b =>
+                {
+                    b.HasOne("ConsultorioMedico.Api.Models.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ConsultorioMedico.Api.Models.PrescricaoItem", b =>
@@ -505,17 +485,6 @@ namespace ConsultorioMedico.Api.Migrations
                         .IsRequired();
 
                     b.Navigation("Consulta");
-                });
-
-            modelBuilder.Entity("Medico", b =>
-                {
-                    b.HasOne("ConsultorioMedico.Api.Models.AppUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -576,12 +545,12 @@ namespace ConsultorioMedico.Api.Migrations
                     b.Navigation("Prontuario");
                 });
 
-            modelBuilder.Entity("ConsultorioMedico.Api.Models.Paciente", b =>
+            modelBuilder.Entity("ConsultorioMedico.Api.Models.Medico", b =>
                 {
                     b.Navigation("Consultas");
                 });
 
-            modelBuilder.Entity("Medico", b =>
+            modelBuilder.Entity("ConsultorioMedico.Api.Models.Paciente", b =>
                 {
                     b.Navigation("Consultas");
                 });

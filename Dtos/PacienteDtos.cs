@@ -9,8 +9,14 @@ namespace ConsultorioMedico.Api.Dtos
         [StringLength(14)] string? Cpf,
         [StringLength(20)] string? Telefone,
         [EmailAddress] string? Email,
-        string? Endereco,
-        string? Observacoes
+        string? Observacoes,
+        string? Cidade,
+        string? Estado,
+        string? Bairro,
+        string? Rua,
+        string? Numero,
+        string? Cep,
+        string? Complemento
     );
 
     public record PacienteUpdateDto(
@@ -19,16 +25,28 @@ namespace ConsultorioMedico.Api.Dtos
         [StringLength(14)] string? Cpf,
         [StringLength(20)] string? Telefone,
         [EmailAddress] string? Email,
-        string? Endereco,
-        string? Observacoes
+        string? Observacoes,
+        string? Cidade,
+        string? Estado,
+        string? Bairro,
+        string? Rua,
+        string? Numero,
+        string? Cep,
+        string? Complemento
     );
 
     public record PacienteListDto(
-        Guid Id, string Nome, DateTime DataNascimento, string? Telefone
-    );
+     Guid Id,
+     string Nome,
+     DateTime DataNascimento,
+     string? Telefone,
+     string? Cidade,
+     string? Estado
+ );
 
     public record PacienteDetailDto(
         Guid Id, string Nome, DateTime DataNascimento, string? Cpf,
-        string? Telefone, string? Email, string? Endereco, string? Observacoes
+        string? Telefone, string? Email, string? Observacoes,
+        string? Cidade, string? Estado, string? Bairro, string? Rua, string? Numero, string? Cep, string? Complemento
     );
 }

@@ -1,19 +1,16 @@
-﻿namespace ConsultorioMedico.Api.Models
+﻿using ConsultorioMedico.Api.Models;
+
+public class Medico
 {
-    public class Medico
-    {
-        public Guid Id { get; set; }
-
-        // Relacionamento com o usuário do Identity
-        public Guid UserId { get; set; }
-        public AppUser User { get; set; } = default!;
-
-        // Dados específicos do médico
-        public string CRM { get; set; } = default!;
-        public string UF { get; set; } = default!;
-        public string Especialidade { get; set; } = default!;
-
-        // Relacionamento com consultas
-        public ICollection<Consulta> Consultas { get; set; } = new List<Consulta>();
-    }
+    public Guid Id { get; set; }
+    public Guid UserId { get; set; }
+    public AppUser User { get; set; } = default!;
+    public string CRM { get; set; } = default!;
+    public string UF { get; set; } = default!;
+    public string Especialidade { get; set; } = default!;
+    public string Nome { get; set; } = default!;
+    public string CPF { get; set; } = default!;
+    public string Email { get; set; } = default!;
+    public string Telefone { get; set; } = default!; // Adicionado
+    public ICollection<Consulta> Consultas { get; set; } = new List<Consulta>();
 }
