@@ -45,4 +45,10 @@ namespace ConsultorioMedico.Api.Dtos
         public ProntuarioUpsertDto? Prontuario { get; set; }
         public List<PrescricaoItemUpsertDto>? Prescricoes { get; set; }
     }
+
+    public class ConsultaHorarioUpdateDto
+    {
+        public DateTime Inicio { get; set; }
+        public DateTime Fim { get; set; }
+    }
 }

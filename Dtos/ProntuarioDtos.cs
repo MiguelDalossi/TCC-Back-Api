@@ -3,7 +3,7 @@ using System;
 namespace ConsultorioMedico.Api.Dtos
 {
     public record ProntuarioUpsertDto(
-    [property: Required] string QueixaPrincipal,
+    [Required] string QueixaPrincipal,
     string Hda,
     string Antecedentes,
     string ExameFisico,

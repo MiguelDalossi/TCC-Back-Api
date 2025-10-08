@@ -17,15 +17,21 @@ namespace ConsultorioMedico.Api.Controllers
     {
         private readonly AppDbContext _db;
         public ConsultasController(AppDbContext db) => _db = db;
-
         [HttpGet]
-        public async Task<IEnumerable<ConsultaListDto>> List()
+        public async Task<IEnumerable<ConsultaListDto>> List([FromQuery] Guid? pacienteId)
         {
-            return await _db.Consultas
+            IQueryable<Consulta> query = _db.Consultas
                 .Include(c => c.Paciente)
-                .Include(c => c.Medico).ThenInclude(m => m.User)
+                .Include(c => c.Medico)
+                .ThenInclude(m => m.User);
+
+            if (pacienteId.HasValue)
+                query = query.Where(c => c.PacienteId == pacienteId.Value);
+
+            return await query
                 .OrderBy(c => c.Inicio)
-                .Select(c => new ConsultaListDto(c.Id, c.Inicio, c.Fim, c.Paciente.Nome, c.Medico.User.FullName ?? "", c.Status.ToString()))
+                .Select(c => new ConsultaListDto(
+                    c.Id, c.Inicio, c.Fim, c.Paciente.Nome, c.Medico.User.FullName ?? "", c.Status.ToString()))
                 .ToListAsync();
         }
 
@@ -86,6 +92,18 @@ namespace ConsultorioMedico.Api.Controllers
             return NoContent();
         }
 
+        [HttpPatch("{id:guid}/horario")]
+        [Authorize(Roles = "Recepcao, MedicoOnly,Admin, Medico")]
+        public async Task<IActionResult> UpdateHorario(Guid id, ConsultaHorarioUpdateDto dto)
+        {
+            var consulta = await _db.Consultas.FindAsync(id);
+            if (consulta is null) return NotFound();
+            consulta.Inicio = dto.Inicio;
+            consulta.Fim = dto.Fim;
+            await _db.SaveChangesAsync();
+            return NoContent();
+        }
+
         [HttpPut("{id:guid}")]
         [Authorize(Roles = "MedicoOnly, Medico, Admin")]
         public async Task<IActionResult> Update(Guid id, ConsultaUpdateDto dto)
@@ -98,12 +116,11 @@ namespace ConsultorioMedico.Api.Controllers
             if (consulta is null)
                 return NotFound();
 
-            // Atualiza campos básicos da consulta
             consulta.Inicio = dto.Inicio;
             consulta.Fim = dto.Fim;
             consulta.Status = Enum.Parse<StatusConsulta>(dto.Status.ToString());
 
-            // Atualiza ou cria o prontuário
+            // Prontuário
             if (dto.Prontuario != null)
             {
                 if (consulta.Prontuario is null)
@@ -123,7 +140,7 @@ namespace ConsultorioMedico.Api.Controllers
                 consulta.Prontuario.AtualizadoEm = DateTime.UtcNow;
             }
 
-            // Atualiza prescrições
+            // Prescrições
             if (dto.Prescricoes != null)
             {
                 _db.Prescricoes.RemoveRange(consulta.Prescricoes);

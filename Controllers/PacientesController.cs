@@ -45,7 +45,6 @@ namespace ConsultorioMedico.Api.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [Authorize(Roles = "Recepcao,Admin,MedicoOnly, Medico")]
         public async Task<IActionResult> Create([FromBody] PacienteCreateDto dto)
         {
@@ -71,7 +70,6 @@ namespace ConsultorioMedico.Api.Controllers
         }
 
         [HttpPut("{id:guid}")]
-        [AllowAnonymous]
         [Authorize(Roles = "Recepcao,Admin,MedicoOnly, Medico")]
         public async Task<IActionResult> Update(Guid id, PacienteUpdateDto dto)
         {
@@ -95,12 +93,22 @@ namespace ConsultorioMedico.Api.Controllers
         }
 
         [HttpDelete("{id:guid}")]
-        [Authorize(Roles = "Medico,MedicoOnly,Admin")]
+        [Authorize(Roles = "Recepcao,Admin,MedicoOnly, Medico")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var paciente = await _db.Pacientes.FindAsync(id);
+            var paciente = await _db.Pacientes
+                .Include(p => p.Consultas)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
             if (paciente is null)
                 return NotFound();
+
+            // Remove todas as consultas vinculadas (canceladas ou concluídas)
+            var consultasParaRemover = paciente.Consultas
+                .Where(c => c.Status == StatusConsulta.Cancelada)
+                .ToList();
+
+            _db.Consultas.RemoveRange(consultasParaRemover);
 
             _db.Pacientes.Remove(paciente);
             await _db.SaveChangesAsync();

@@ -3,6 +3,42 @@
   "WorkspaceRootPath": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\controllers\\prescricoescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:controllers\\prescricoescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\services\\pdfservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:services\\pdfservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\controllers\\prontuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:controllers\\prontuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\dtos\\medicodtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:dtos\\medicodtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\controllers\\pacientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:controllers\\pacientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\controllers\\consultascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:controllers\\consultascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\dtos\\consultadtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:dtos\\consultadtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\dtos\\prescricaodtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:dtos\\prescricaodtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,44 +47,12 @@
       "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:dtos\\prontuariodtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\dtos\\consultadtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:dtos\\consultadtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\dtos\\medicodtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:dtos\\medicodtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\controllers\\medicoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:controllers\\medicoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\controllers\\consultascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:controllers\\consultascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\models\\medico.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:models\\medico.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\controllers\\pacientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:controllers\\pacientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\dtos\\pacientedtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:dtos\\pacientedtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\controllers\\prontuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:controllers\\prontuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\models\\prescricaoitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:models\\prescricaoitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\controllers\\prescricoescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:controllers\\prescricoescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\models\\paciente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -59,24 +63,12 @@
       "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\dtos\\authdtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:dtos\\authdtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\models\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:models\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\models\\auditlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:models\\auditlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\infrastructure\\identityseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -95,10 +87,6 @@
       "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\services\\pdfservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:services\\pdfservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
@@ -109,10 +97,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\migrations\\20250822132608_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:migrations\\20250822132608_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|c:\\users\\migue\\source\\repos\\consultoriomedico.api\\models\\prontuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D2141D31-3B0E-4190-8668-DD92DC290259}|ConsultorioMedico.Api.csproj|solutionrelative:models\\prontuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
@@ -137,146 +121,169 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 4,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "AuditLog.cs",
-              "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Models\\AuditLog.cs",
-              "RelativeDocumentMoniker": "Models\\AuditLog.cs",
-              "ToolTip": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Models\\AuditLog.cs",
-              "RelativeToolTip": "Models\\AuditLog.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-21T16:13:43.358Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ConsultaDtos.cs",
-              "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Dtos\\ConsultaDtos.cs",
-              "RelativeDocumentMoniker": "Dtos\\ConsultaDtos.cs",
-              "ToolTip": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Dtos\\ConsultaDtos.cs",
-              "RelativeToolTip": "Dtos\\ConsultaDtos.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACsAAAAqAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-21T16:42:47.036Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "MedicoDtos.cs",
               "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Dtos\\MedicoDtos.cs",
               "RelativeDocumentMoniker": "Dtos\\MedicoDtos.cs",
               "ToolTip": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Dtos\\MedicoDtos.cs",
               "RelativeToolTip": "Dtos\\MedicoDtos.cs",
-              "ViewState": "AQIAAAoAAAAAAAAAAAA/wBMAAAA4AAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAA3wBcAAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-21T16:42:22.832Z",
+              "WhenOpened": "2025-10-06T16:59:17.299Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MedicosController.cs",
-              "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Controllers\\MedicosController.cs",
-              "RelativeDocumentMoniker": "Controllers\\MedicosController.cs",
-              "ToolTip": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Controllers\\MedicosController.cs",
-              "RelativeToolTip": "Controllers\\MedicosController.cs",
-              "ViewState": "AQIAAKsAAAAAAAAAAAAYwL0AAAAAAAAA",
+              "DocumentIndex": 3,
+              "Title": "ProntuariosController.cs",
+              "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Controllers\\ProntuariosController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProntuariosController.cs",
+              "ToolTip": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Controllers\\ProntuariosController.cs",
+              "RelativeToolTip": "Controllers\\ProntuariosController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAE4AAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-18T13:19:15.805Z",
+              "WhenOpened": "2025-08-22T14:16:24.794Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Medico.cs",
-              "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Models\\Medico.cs",
-              "RelativeDocumentMoniker": "Models\\Medico.cs",
-              "ToolTip": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Models\\Medico.cs",
-              "RelativeToolTip": "Models\\Medico.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAYwAgAAAAuAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-21T16:16:39.634Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ProntuarioDtos.cs",
-              "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Dtos\\ProntuarioDtos.cs",
-              "RelativeDocumentMoniker": "Dtos\\ProntuarioDtos.cs",
-              "ToolTip": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Dtos\\ProntuarioDtos.cs",
-              "RelativeToolTip": "Dtos\\ProntuarioDtos.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAwAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-21T16:43:33.759Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PrescricaoDtos.cs",
-              "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Dtos\\PrescricaoDtos.cs",
-              "RelativeDocumentMoniker": "Dtos\\PrescricaoDtos.cs",
-              "ToolTip": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Dtos\\PrescricaoDtos.cs",
-              "RelativeToolTip": "Dtos\\PrescricaoDtos.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-21T16:39:28.551Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "PacienteDtos.cs",
-              "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Dtos\\PacienteDtos.cs",
-              "RelativeDocumentMoniker": "Dtos\\PacienteDtos.cs",
-              "ToolTip": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Dtos\\PacienteDtos.cs",
-              "RelativeToolTip": "Dtos\\PacienteDtos.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAAAwCcAAAARAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-21T16:41:44.847Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
               "Title": "PacientesController.cs",
               "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Controllers\\PacientesController.cs",
               "RelativeDocumentMoniker": "Controllers\\PacientesController.cs",
               "ToolTip": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Controllers\\PacientesController.cs",
               "RelativeToolTip": "Controllers\\PacientesController.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAnwBsAAAAXAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEoAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-22T14:15:15.67Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
+              "Title": "PrescricoesController.cs",
+              "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Controllers\\PrescricoesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\PrescricoesController.cs",
+              "ToolTip": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Controllers\\PrescricoesController.cs",
+              "RelativeToolTip": "Controllers\\PrescricoesController.cs",
+              "ViewState": "AQIAACMAAAAAAAAAAAAgwDcAAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-22T14:16:46.438Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TokenService.cs",
+              "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Services\\TokenService.cs",
+              "RelativeDocumentMoniker": "Services\\TokenService.cs",
+              "ToolTip": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Services\\TokenService.cs",
+              "RelativeToolTip": "Services\\TokenService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAABUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-22T14:43:24.194Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PdfService.cs",
+              "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Services\\PdfService.cs",
+              "RelativeDocumentMoniker": "Services\\PdfService.cs",
+              "ToolTip": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Services\\PdfService.cs",
+              "RelativeToolTip": "Services\\PdfService.cs",
+              "ViewState": "AQIAACEAAAAAAAAAAAAYwIcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-22T12:50:41.704Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAEIAAAAAAAAAAAAAAFgAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-21T16:05:40.946Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ConsultaDtos.cs",
+              "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Dtos\\ConsultaDtos.cs",
+              "RelativeDocumentMoniker": "Dtos\\ConsultaDtos.cs",
+              "ToolTip": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Dtos\\ConsultaDtos.cs",
+              "RelativeToolTip": "Dtos\\ConsultaDtos.cs",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAgwDQAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-21T16:42:47.036Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "ConsultasController.cs",
               "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Controllers\\ConsultasController.cs",
               "RelativeDocumentMoniker": "Controllers\\ConsultasController.cs",
               "ToolTip": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Controllers\\ConsultasController.cs",
               "RelativeToolTip": "Controllers\\ConsultasController.cs",
-              "ViewState": "AQIAAG8AAAAAAAAAAAAowFoAAABDAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACMAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-22T14:15:52.173Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PrescricaoDtos.cs",
+              "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Dtos\\PrescricaoDtos.cs",
+              "RelativeDocumentMoniker": "Dtos\\PrescricaoDtos.cs",
+              "ToolTip": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Dtos\\PrescricaoDtos.cs",
+              "RelativeToolTip": "Dtos\\PrescricaoDtos.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-21T16:39:28.551Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "PacienteDtos.cs",
+              "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Dtos\\PacienteDtos.cs",
+              "RelativeDocumentMoniker": "Dtos\\PacienteDtos.cs",
+              "ToolTip": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Dtos\\PacienteDtos.cs",
+              "RelativeToolTip": "Dtos\\PacienteDtos.cs",
+              "ViewState": "AQIAABQAAAAAAAAAAAAAwCcAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-21T16:41:44.847Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 10,
+              "Title": "ProntuarioDtos.cs",
+              "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Dtos\\ProntuarioDtos.cs",
+              "RelativeDocumentMoniker": "Dtos\\ProntuarioDtos.cs",
+              "ToolTip": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Dtos\\ProntuarioDtos.cs",
+              "RelativeToolTip": "Dtos\\ProntuarioDtos.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-21T16:43:33.759Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "PrescricaoItem.cs",
               "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Models\\PrescricaoItem.cs",
               "RelativeDocumentMoniker": "Models\\PrescricaoItem.cs",
@@ -289,33 +296,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ProntuariosController.cs",
-              "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Controllers\\ProntuariosController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ProntuariosController.cs",
-              "ToolTip": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Controllers\\ProntuariosController.cs",
-              "RelativeToolTip": "Controllers\\ProntuariosController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAATAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-22T14:16:24.794Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "PrescricoesController.cs",
-              "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Controllers\\PrescricoesController.cs",
-              "RelativeDocumentMoniker": "Controllers\\PrescricoesController.cs",
-              "ToolTip": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Controllers\\PrescricoesController.cs",
-              "RelativeToolTip": "Controllers\\PrescricoesController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-22T14:16:46.438Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "Paciente.cs",
               "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Models\\Paciente.cs",
               "RelativeDocumentMoniker": "Models\\Paciente.cs",
@@ -323,12 +304,11 @@
               "RelativeToolTip": "Models\\Paciente.cs",
               "ViewState": "AQIAAAIAAAAAAAAAAAA2wBcAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-21T16:09:03.214Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-21T16:09:03.214Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
@@ -336,8 +316,7 @@
               "RelativeToolTip": "Controllers\\AuthController.cs",
               "ViewState": "AQIAACYAAAAAAAAAAAAQwCgAAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-22T14:44:25.325Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-22T14:44:25.325Z"
             },
             {
               "$type": "Document",
@@ -349,21 +328,7 @@
               "RelativeToolTip": "Dtos\\AuthDtos.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAAAABMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-21T16:44:00.527Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAABsAAAAAAAAAAAAAADAAAAAmAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-21T16:05:40.946Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-21T16:44:00.527Z"
             },
             {
               "$type": "Document",
@@ -375,24 +340,11 @@
               "RelativeToolTip": "Models\\AppUser.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-21T16:10:02.099Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-21T16:10:02.099Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "TokenService.cs",
-              "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Services\\TokenService.cs",
-              "RelativeDocumentMoniker": "Services\\TokenService.cs",
-              "ToolTip": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Services\\TokenService.cs",
-              "RelativeToolTip": "Services\\TokenService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAABUAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-22T14:43:24.194Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 17,
               "Title": "IdentitySeeder.cs",
               "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Infrastructure\\IdentitySeeder.cs",
               "RelativeDocumentMoniker": "Infrastructure\\IdentitySeeder.cs",
@@ -404,7 +356,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 18,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -416,7 +368,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 19,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "Data\\AppDbContext.cs",
@@ -428,7 +380,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 20,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "Properties\\launchSettings.json",
@@ -440,7 +392,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 21,
               "Title": ".gitignore",
               "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\.gitignore",
               "RelativeDocumentMoniker": ".gitignore",
@@ -452,19 +404,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "PdfService.cs",
-              "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Services\\PdfService.cs",
-              "RelativeDocumentMoniker": "Services\\PdfService.cs",
-              "ToolTip": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Services\\PdfService.cs",
-              "RelativeToolTip": "Services\\PdfService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-22T12:50:41.704Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 22,
               "Title": "ConsultorioMedico.Api.csproj",
               "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\ConsultorioMedico.Api.csproj",
               "RelativeDocumentMoniker": "ConsultorioMedico.Api.csproj",
@@ -476,7 +416,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 23,
               "Title": "20250822132608_InitialCreate.cs",
               "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Migrations\\20250822132608_InitialCreate.cs",
               "RelativeDocumentMoniker": "Migrations\\20250822132608_InitialCreate.cs",
@@ -488,19 +428,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "Prontuario.cs",
-              "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Models\\Prontuario.cs",
-              "RelativeDocumentMoniker": "Models\\Prontuario.cs",
-              "ToolTip": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Models\\Prontuario.cs",
-              "RelativeToolTip": "Models\\Prontuario.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAzAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-21T16:12:15.222Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 24,
               "Title": "Microsoft.Common.CurrentVersion.targets",
               "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
@@ -512,7 +440,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 25,
               "Title": "PingController.cs",
               "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Controllers\\PingController.cs",
               "RelativeDocumentMoniker": "Controllers\\PingController.cs",
@@ -524,7 +452,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 26,
               "Title": "Consulta.cs",
               "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\Models\\Consulta.cs",
               "RelativeDocumentMoniker": "Models\\Consulta.cs",
@@ -532,12 +460,11 @@
               "RelativeToolTip": "Models\\Consulta.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-21T16:11:20.63Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-21T16:11:20.63Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 27,
               "Title": "ConsultorioMedico.Api.http",
               "DocumentMoniker": "C:\\Users\\migue\\source\\repos\\ConsultorioMedico.Api\\ConsultorioMedico.Api.http",
               "RelativeDocumentMoniker": "ConsultorioMedico.Api.http",
