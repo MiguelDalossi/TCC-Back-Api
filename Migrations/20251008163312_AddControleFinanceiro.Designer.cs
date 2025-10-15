@@ -4,6 +4,7 @@ using ConsultorioMedico.Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConsultorioMedico.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251008163312_AddControleFinanceiro")]
+    partial class AddControleFinanceiro
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -175,6 +178,28 @@ namespace ConsultorioMedico.Api.Migrations
                     b.ToTable("Consultas");
                 });
 
+            modelBuilder.Entity("ConsultorioMedico.Api.Models.ControleFinanceiro", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ConsultaId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Data")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ConsultaId");
+
+                    b.ToTable("ControleFinanceiro");
+                });
+
             modelBuilder.Entity("ConsultorioMedico.Api.Models.Paciente", b =>
                 {
                     b.Property<Guid>("Id")
@@ -309,39 +334,6 @@ namespace ConsultorioMedico.Api.Migrations
                     b.ToTable("Prontuarios");
                 });
 
-            modelBuilder.Entity("ControleFinanceiro", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ConsultaId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Data")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("GuiaConvenio")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("MedicoId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("NumeroCarteirinha")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Valor")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ConsultaId");
-
-                    b.HasIndex("MedicoId");
-
-                    b.ToTable("ControleFinanceiro");
-                });
-
             modelBuilder.Entity("Medico", b =>
                 {
                     b.Property<Guid>("Id")
@@ -378,6 +370,9 @@ namespace ConsultorioMedico.Api.Migrations
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("ValorConsultaPadrao")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -539,6 +534,17 @@ namespace ConsultorioMedico.Api.Migrations
                     b.Navigation("Paciente");
                 });
 
+            modelBuilder.Entity("ConsultorioMedico.Api.Models.ControleFinanceiro", b =>
+                {
+                    b.HasOne("ConsultorioMedico.Api.Models.Consulta", "Consulta")
+                        .WithMany()
+                        .HasForeignKey("ConsultaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Consulta");
+                });
+
             modelBuilder.Entity("ConsultorioMedico.Api.Models.PrescricaoItem", b =>
                 {
                     b.HasOne("ConsultorioMedico.Api.Models.Consulta", "Consulta")
@@ -559,25 +565,6 @@ namespace ConsultorioMedico.Api.Migrations
                         .IsRequired();
 
                     b.Navigation("Consulta");
-                });
-
-            modelBuilder.Entity("ControleFinanceiro", b =>
-                {
-                    b.HasOne("ConsultorioMedico.Api.Models.Consulta", "Consulta")
-                        .WithMany()
-                        .HasForeignKey("ConsultaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Medico", "Medico")
-                        .WithMany()
-                        .HasForeignKey("MedicoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Consulta");
-
-                    b.Navigation("Medico");
                 });
 
             modelBuilder.Entity("Medico", b =>

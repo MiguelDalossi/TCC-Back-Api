@@ -14,6 +14,7 @@ namespace ConsultorioMedico.Api.Data
         public DbSet<PrescricaoItem> Prescricoes => Set<PrescricaoItem>();
         public DbSet<AuditLog> AuditLogs => Set<AuditLog>();
         public DbSet<Medico> Medicos => Set<Medico>();
+        public DbSet<ControleFinanceiro> ControleFinanceiro => Set<ControleFinanceiro>();
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 

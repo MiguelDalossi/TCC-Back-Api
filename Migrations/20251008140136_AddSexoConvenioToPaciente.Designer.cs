@@ -4,6 +4,7 @@ using ConsultorioMedico.Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConsultorioMedico.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251008140136_AddSexoConvenioToPaciente")]
+    partial class AddSexoConvenioToPaciente
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -139,32 +142,17 @@ namespace ConsultorioMedico.Api.Migrations
                     b.Property<DateTime>("Fim")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("GuiaConvenio")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("Inicio")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("MedicoId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("NumeroCarteirinha")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<Guid>("PacienteId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
-
-                    b.Property<int>("StatusPagamento")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TipoAtendimento")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("ValorConsulta")
-                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -307,39 +295,6 @@ namespace ConsultorioMedico.Api.Migrations
                         .IsUnique();
 
                     b.ToTable("Prontuarios");
-                });
-
-            modelBuilder.Entity("ControleFinanceiro", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ConsultaId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Data")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("GuiaConvenio")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("MedicoId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("NumeroCarteirinha")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Valor")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ConsultaId");
-
-                    b.HasIndex("MedicoId");
-
-                    b.ToTable("ControleFinanceiro");
                 });
 
             modelBuilder.Entity("Medico", b =>
@@ -559,25 +514,6 @@ namespace ConsultorioMedico.Api.Migrations
                         .IsRequired();
 
                     b.Navigation("Consulta");
-                });
-
-            modelBuilder.Entity("ControleFinanceiro", b =>
-                {
-                    b.HasOne("ConsultorioMedico.Api.Models.Consulta", "Consulta")
-                        .WithMany()
-                        .HasForeignKey("ConsultaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Medico", "Medico")
-                        .WithMany()
-                        .HasForeignKey("MedicoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Consulta");
-
-                    b.Navigation("Medico");
                 });
 
             modelBuilder.Entity("Medico", b =>

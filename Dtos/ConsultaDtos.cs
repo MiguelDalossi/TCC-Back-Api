@@ -1,15 +1,20 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System;
+using ConsultorioMedico.Api.Models;
 public enum StatusConsultaDto { Agendada, EmAndamento, Concluida, Cancelada }
 
 namespace ConsultorioMedico.Api.Dtos
 {
     public record ConsultaCreateDto(
-        [Required] Guid PacienteId,
-        [Required] Guid MedicoId,
-        [Required] DateTime Inicio,
-        [Required] DateTime Fim
-    );
+    Guid PacienteId,
+    Guid MedicoId,
+    DateTime Inicio,
+    DateTime Fim,
+    TipoAtendimento TipoAtendimento,
+    decimal ValorConsulta,
+    string? NumeroCarteirinha,
+    string? GuiaConvenio
+);
 
     public record ConsultaUpdateHorarioDto(
         [Required] DateTime Inicio,
@@ -25,26 +30,37 @@ namespace ConsultorioMedico.Api.Dtos
     );
 
     public record ConsultaDetailDto(
-        Guid Id,
-        DateTime Inicio,
-        DateTime Fim,
-        string Status,
-        Guid PacienteId,
-        string PacienteNome,
-        Guid MedicoId,
-        string MedicoNome,
-        ProntuarioDetailDto? Prontuario,
-        List<PrescricaoItemDto> Prescricoes
-    );
+    Guid Id,
+    DateTime Inicio,
+    DateTime Fim,
+    string Status,
+    Guid PacienteId,
+    string PacienteNome,
+    Guid MedicoId,
+    string MedicoNome,
+    StatusPagamento StatusPagamento,
+    TipoAtendimento TipoAtendimento,
+    decimal ValorConsulta,
+    string? NumeroCarteirinha,
+    string? GuiaConvenio,
+    ProntuarioDetailDto? Prontuario,
+    List<PrescricaoItemDto> Prescricoes
+);
 
     public class ConsultaUpdateDto
     {
         public DateTime Inicio { get; set; }
         public DateTime Fim { get; set; }
-        public string Status { get; set; }
+        public StatusConsultaDto Status { get; set; }
+        public TipoAtendimento TipoAtendimento { get; set; }
+        public decimal ValorConsulta { get; set; }
+        public string? GuiaConvenio { get; set; }
+        public string? NumeroCarteirinha { get; set; }
+        public StatusPagamento StatusPagamento { get; set; } 
         public ProntuarioUpsertDto? Prontuario { get; set; }
         public List<PrescricaoItemUpsertDto>? Prescricoes { get; set; }
     }
+
 
     public class ConsultaHorarioUpdateDto
     {

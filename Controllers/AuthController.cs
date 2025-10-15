@@ -52,7 +52,7 @@ namespace ConsultorioMedico.Api.Controllers
 
 
         [HttpPost("register")]
-        [AllowAnonymous] // em produção, restrinja com [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Register([FromBody] RegisterDto dto,
             [FromServices] UserManager<AppUser> userMgr,
             [FromServices] RoleManager<IdentityRole<Guid>> roleMgr)

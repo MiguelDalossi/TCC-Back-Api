@@ -28,6 +28,8 @@ namespace ConsultorioMedico.Api.Controllers
                 p.Nome,
                 p.DataNascimento,
                 p.Telefone,
+                p.Sexo,         // Novo campo
+                p.Convenio,     // Novo campo
                 p.Cidade,
                 p.Estado
                 ))
@@ -39,9 +41,11 @@ namespace ConsultorioMedico.Api.Controllers
             var p = await _db.Pacientes.FindAsync(id);
             if (p is null) return NotFound();
             return new PacienteDetailDto(
-                p.Id, p.Nome, p.DataNascimento, p.Cpf, p.Telefone, p.Email, p.Observacoes,
-                p.Cidade, p.Estado, p.Bairro, p.Rua, p.Numero, p.Cep, p.Complemento
-            );
+    p.Id, p.Nome, p.DataNascimento, p.Cpf, p.Telefone, p.Email, p.Observacoes,
+    p.Sexo,         // Novo campo
+    p.Convenio,     // Novo campo
+    p.Cidade, p.Estado, p.Bairro, p.Rua, p.Numero, p.Cep, p.Complemento
+);
         }
 
         [HttpPost]
@@ -56,6 +60,8 @@ namespace ConsultorioMedico.Api.Controllers
                 Telefone = dto.Telefone,
                 Email = dto.Email,
                 Observacoes = dto.Observacoes,
+                Sexo = dto.Sexo,             // Novo campo
+                Convenio = dto.Convenio,     // Novo campo
                 Cidade = dto.Cidade,
                 Estado = dto.Estado,
                 Bairro = dto.Bairro,
@@ -81,6 +87,8 @@ namespace ConsultorioMedico.Api.Controllers
             p.Telefone = dto.Telefone;
             p.Email = dto.Email;
             p.Observacoes = dto.Observacoes;
+            p.Sexo = dto.Sexo;             // Novo campo
+            p.Convenio = dto.Convenio;     // Novo campo
             p.Cidade = dto.Cidade;
             p.Estado = dto.Estado;
             p.Bairro = dto.Bairro;

@@ -11,6 +11,6 @@ public class Medico
     public string Nome { get; set; } = default!;
     public string CPF { get; set; } = default!;
     public string Email { get; set; } = default!;
-    public string Telefone { get; set; } = default!; // Adicionado
+    public string Telefone { get; set; } = default!; 
     public ICollection<Consulta> Consultas { get; set; } = new List<Consulta>();
 }

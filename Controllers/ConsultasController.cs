@@ -48,14 +48,33 @@ namespace ConsultorioMedico.Api.Controllers
             if (c is null) return NotFound();
 
             return new ConsultaDetailDto(
-                c.Id, c.Inicio, c.Fim, c.Status.ToString(),
-                c.PacienteId, c.Paciente.Nome, c.MedicoId, c.Medico.User.FullName ?? "",
-                c.Prontuario is null ? null :
-                    new ProntuarioDetailDto(c.Prontuario.Id, c.Prontuario.QueixaPrincipal, c.Prontuario.Hda, c.Prontuario.Antecedentes,
-                                            c.Prontuario.ExameFisico, c.Prontuario.HipotesesDiagnosticas, c.Prontuario.Conduta,
-                                            c.Prontuario.CriadoEm, c.Prontuario.AtualizadoEm),
-                c.Prescricoes.Select(p => new PrescricaoItemDto(p.Id, p.Medicamento, p.Posologia, p.Orientacoes)).ToList()
-            );
+     c.Id,
+     c.Inicio,
+     c.Fim,
+     c.Status.ToString(),
+     c.PacienteId,
+     c.Paciente.Nome,
+     c.MedicoId,
+     c.Medico.User.FullName ?? "",
+     c.StatusPagamento,
+     c.TipoAtendimento,
+     c.ValorConsulta,
+     c.NumeroCarteirinha,
+     c.GuiaConvenio,
+     c.Prontuario is null ? null :
+         new ProntuarioDetailDto(
+             c.Prontuario.Id,
+             c.Prontuario.QueixaPrincipal,
+             c.Prontuario.Hda,
+             c.Prontuario.Antecedentes,
+             c.Prontuario.ExameFisico,
+             c.Prontuario.HipotesesDiagnosticas,
+             c.Prontuario.Conduta,
+             c.Prontuario.CriadoEm,
+             c.Prontuario.AtualizadoEm
+         ),
+     c.Prescricoes.Select(p => new PrescricaoItemDto(p.Id, p.Medicamento, p.Posologia, p.Orientacoes)).ToList()
+ );
         }
 
         [HttpPost]
@@ -74,7 +93,11 @@ namespace ConsultorioMedico.Api.Controllers
                 PacienteId = dto.PacienteId,
                 MedicoId = dto.MedicoId,
                 Inicio = dto.Inicio,
-                Fim = dto.Fim
+                Fim = dto.Fim,
+                TipoAtendimento = dto.TipoAtendimento,
+                ValorConsulta = dto.TipoAtendimento == TipoAtendimento.Particular ? dto.ValorConsulta : 0,
+                NumeroCarteirinha = dto.TipoAtendimento == TipoAtendimento.Convenio ? dto.NumeroCarteirinha : null,
+                GuiaConvenio = dto.TipoAtendimento == TipoAtendimento.Convenio ? dto.GuiaConvenio : null
             };
             _db.Consultas.Add(cst);
             await _db.SaveChangesAsync();
@@ -104,6 +127,36 @@ namespace ConsultorioMedico.Api.Controllers
             return NoContent();
         }
 
+        [HttpPatch("{id:guid}/pagamento")]
+        [Authorize(Roles = "Recepcao ,MedicoOnly, Medico, Admin")]
+        public async Task<IActionResult> AtualizarPagamento(Guid id, [FromBody] StatusPagamento novoStatus)
+        {
+            var consulta = await _db.Consultas.FindAsync(id);
+            if (consulta is null) return NotFound();
+
+            if (consulta.StatusPagamento != StatusPagamento.Pago &&
+                novoStatus == StatusPagamento.Pago &&
+                consulta.TipoAtendimento == TipoAtendimento.Particular)
+            {
+                var jaExiste = await _db.ControleFinanceiro.AnyAsync(f => f.ConsultaId == consulta.Id);
+                if (!jaExiste)
+                {
+                    _db.ControleFinanceiro.Add(new ControleFinanceiro
+                    {
+                        Id = Guid.NewGuid(),
+                        Data = DateTime.UtcNow,
+                        Valor = consulta.ValorConsulta,
+                        ConsultaId = consulta.Id,
+                        MedicoId = consulta.MedicoId // <-- ALTERAÇÃO AQUI
+                    });
+                }
+            }
+
+            consulta.StatusPagamento = novoStatus;
+            await _db.SaveChangesAsync();
+            return NoContent();
+        }
+
         [HttpPut("{id:guid}")]
         [Authorize(Roles = "MedicoOnly, Medico, Admin")]
         public async Task<IActionResult> Update(Guid id, ConsultaUpdateDto dto)
@@ -120,8 +173,46 @@ namespace ConsultorioMedico.Api.Controllers
             consulta.Fim = dto.Fim;
             consulta.Status = Enum.Parse<StatusConsulta>(dto.Status.ToString());
 
+            // Atualiza tipo de atendimento e campos relacionados
+            consulta.TipoAtendimento = dto.TipoAtendimento;
+            if (dto.TipoAtendimento == TipoAtendimento.Convenio)
+            {
+                consulta.GuiaConvenio = dto.GuiaConvenio;
+                consulta.NumeroCarteirinha = dto.NumeroCarteirinha;
+                consulta.ValorConsulta = 0;
+            }
+            else
+            {
+                consulta.GuiaConvenio = null;
+                consulta.NumeroCarteirinha = null;
+                consulta.ValorConsulta = dto.ValorConsulta;
+            }
+
+            // Atualiza status de pagamento
+            var statusPagamentoAnterior = consulta.StatusPagamento;
+            consulta.StatusPagamento = dto.StatusPagamento;
+
+            // Lança no controle financeiro apenas se mudou para Pago e ainda não existe lançamento
+            if (statusPagamentoAnterior != StatusPagamento.Pago &&
+                dto.StatusPagamento == StatusPagamento.Pago &&
+                consulta.TipoAtendimento == TipoAtendimento.Particular)
+            {
+                var jaExiste = await _db.ControleFinanceiro.AnyAsync(f => f.ConsultaId == consulta.Id);
+                if (!jaExiste)
+                {
+                    _db.ControleFinanceiro.Add(new ControleFinanceiro
+                    {
+                        Id = Guid.NewGuid(),
+                        Data = DateTime.UtcNow,
+                        Valor = consulta.ValorConsulta,
+                        ConsultaId = consulta.Id,
+                        MedicoId = consulta.MedicoId // <-- ALTERAÇÃO AQUI
+                    });
+                }
+            }
+
             // Prontuário
-            if (dto.Prontuario != null)
+            if (dto.Prontuario is not null)
             {
                 if (consulta.Prontuario is null)
                 {
@@ -131,12 +222,13 @@ namespace ConsultorioMedico.Api.Controllers
                         CriadoEm = DateTime.UtcNow
                     };
                 }
-                consulta.Prontuario.QueixaPrincipal = dto.Prontuario.QueixaPrincipal;
-                consulta.Prontuario.Hda = dto.Prontuario.Hda;
-                consulta.Prontuario.Antecedentes = dto.Prontuario.Antecedentes;
-                consulta.Prontuario.ExameFisico = dto.Prontuario.ExameFisico;
-                consulta.Prontuario.HipotesesDiagnosticas = dto.Prontuario.HipotesesDiagnosticas;
-                consulta.Prontuario.Conduta = dto.Prontuario.Conduta;
+                consulta.Prontuario.QueixaPrincipal = dto.Prontuario!.QueixaPrincipal;
+                consulta.Prontuario.Hda = dto.Prontuario!.Hda;
+                consulta.Prontuario.Antecedentes = dto.Prontuario!.Antecedentes;
+                consulta.Prontuario.ExameFisico = dto.Prontuario!.ExameFisico;
+                consulta.Prontuario.HipotesesDiagnosticas = dto.Prontuario!.HipotesesDiagnosticas;
+                consulta.Prontuario.Conduta = dto.Prontuario!.Conduta;
+
                 consulta.Prontuario.AtualizadoEm = DateTime.UtcNow;
             }
 
@@ -159,6 +251,8 @@ namespace ConsultorioMedico.Api.Controllers
             await _db.SaveChangesAsync();
             return NoContent();
         }
+
+
 
     }
 }
